@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset=""UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>일반링크</h1>
+        <a href="http://localhost:3216/">페이지 이동을 통한 직접 백엔드 접속</a>
+        <hr />
+        <h1>Ajax</h1>
+        <button id="get" type="button">get</button>
+        <button id="post" type="button">post</button>
+        <button id="put" type="button">put</button>
+        <button id="delete" type="button">delete</button>
+        <h1 id='console'></h1>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            document.getElementById("get").addEventListener('click', (e) =>{
+                e.preventDefault();
+                (async () => {
+                    try {
+                        const response = await axios.get('http://localhost:3217/');
+                        document.getElementById('console').innerHTML = response.data.message;
+                    } catch (error) {
+                        const errorMsg = "[" + error.response.status + "] " + error.response.statusText
+                        alert(errorMsg);
+                        return;
+                    }
+                })();
+            });
+
+            document.getElementById("post").addEventListener('click', (e) =>{
+                e.preventDefault();
+                (async () => {
+                    try {
+                        const response = await axios.post('http://localhost:3217/');
+                        document.getElementById('console').innerHTML = response.data.message;
+                    } catch (error) {
+                        const errorMsg = "[" + error.response.status + "] " + error.response.statusText
+                        alert(errorMsg);
+                        return;
+                    }
+                })();
+            });
+
+            document.getElementById("put").addEventListener('click', (e) =>{
+                e.preventDefault();
+                (async () => {
+                    try {
+                        const response = await axios.put('http://localhost:3217/');
+                        document.getElementById('console').innerHTML = response.data.message;
+                    } catch (error) {
+                        const errorMsg = "[" + error.response.status + "] " + error.response.statusText
+                        alert(errorMsg);
+                        return;
+                    }
+                })();
+            });
+
+            document.getElementById("delete").addEventListener('click', (e) =>{
+                e.preventDefault();
+                (async () => {
+                    try {
+                        const response = await axios.delete('http://localhost:3217/');
+                        document.getElementById('console').innerHTML = response.data.message;
+                    } catch (error) {
+                        const errorMsg = "[" + error.response.status + "] " + error.response.statusText
+                        alert(errorMsg);
+                        return;
+                    }
+                })();
+            });            
+
+        </script>
+    </body>
+</html>
